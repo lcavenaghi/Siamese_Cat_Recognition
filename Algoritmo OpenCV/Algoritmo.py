@@ -8,6 +8,7 @@ import os.path
 import numpy as np
 import time
 
+detector = cv2.CascadeClassifier("util/haarcascade_frontalcatface.xml")
 # utiliza haarcascadefrontalcatface que vem do OPENCV para processar imagem e retornar somente a face do gato
 def _processa(quantidade):
 	for contador in range(1,quantidade+1):
@@ -18,9 +19,7 @@ def _processa(quantidade):
 
 			# cria imagem cortada
 			imagemCortada = imagemCinza
-
-			# detectando
-			detector = cv2.CascadeClassifier("util/haarcascade_frontalcatface.xml")
+			
 			rects = detector.detectMultiScale(imagemCinza, scaleFactor=1.3,
 				minNeighbors=10, minSize=(75, 75))
 
